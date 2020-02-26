@@ -1,0 +1,19 @@
+baseurl = "/"
+# If you use "hugo server" you might want to use this entry:
+#baseurl = "http://localhost:1313/"
+title = "data bloomin science"
+copyright = "&copy; Lorem ipsum ... and so on ..."
+
+theme = "hugo-theme-hamburg"
+paginate = 5
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[menu]
+	[[menu.main]]
+		name = "About"
+		identifier = "about"
+		url = "pages/about"
+
+[params]
+	subtitle = "One luddite's journey through life and tech"
+	mainSections = ["posts"]
