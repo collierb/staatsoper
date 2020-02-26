@@ -17,7 +17,7 @@ summary: ''
 
 I'm a self-confessed luddite. 43 and never learnt to drive. I mostly get around by bicycle. I don't have a telly, microwave, dishwasher, tumble dryer etc. I mow my lawn with this...
 
-![](/posts/2020-02-26-fool-me-once-f-ing-git_files/IMG_0086.jpg)
+![](/posts/2020-02-26-fool-me-once-f-ing-git_files/mower2.jpg)
 
 This is all borne of a particular, peculiar individuality. Naturally, I'm an environmentalist, but I'm also prone to a state of inertia, stubborn, independent and cynical. How I ended up pursuing a career in tech is beyond me.
 
@@ -38,4 +38,4 @@ Frustrated, annoyed at myself but still with a nagging sense of curiosity (other
 
 But I also notice that there's an hour of daylight left and the bare branches of the trees have stopped moving for what seems like the first time in months. The wind will be gale force by morning again - this is the very definition of a window of opportunity. Git can wait, the f-ing git...
 
-![](/posts/2020-02-26-fool-me-once-f-ing-git_files/IMG_0085.jpg)
+![](/posts/2020-02-26-fool-me-once-f-ing-git_files/surfboard.jpg)
