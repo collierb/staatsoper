@@ -1,0 +1,84 @@
+---
+title: 'The Art of Small Data: How Much Fun is Surfing?'
+author: Ben Collier
+date: '2020-03-07'
+slug: the-art-of-small-data-01
+categories:
+  - Small Data
+tags:
+  - small data
+  - surfing
+summary: ''
+---
+
+It is a peculiarity, perhaps, of the English language - certainly in its modern guise - that quite often the native speakers of 'it' are actually worse at 'it' than their second language counterparts. I can't recall being taught any grammar in school - much of what I know about the rules of the language come from my father being such a pedant and from my brief time teaching English in Spain. One rule in English refers to countability or, to put it in data parlance, quantifiability.
+
+There is a difference, then, in how much and how many. The way I learnt to think about it was in reference to rice and grains of rice. You can count grains of rice (1 grain, 2 grains) but you can't count rice (we can't say 1 rice, 2 rice). This then simply equates to how much rice and how many grains of rice. Few people get this wrong (you rarely here 'how many rice is there') but the same simple rules apply to less and fewer, and in my experience, there are very few native speakers who consistently get this right.
+
+The basic trick then, for anyone that gives a shit, is can you count it. So can you count fun? Well no, and you probably shouldn't even try. Anyone that has ever committed to learning to surf will have reached a stage where they simply can't get enough of it. But, really, are they having fun?
+
+Let's leave aside the possibility that a human can derive pleasure from putting on a suit of rubber, immersing themselves in cold water and bobbing around watching the horizon trying not to talk to anyone, and focus on the moment that they are doing this for in the first place - namely catching a wave and standing up.
+
+My last surf was 2 weeks ago. I was in the water for an hour and a half. I rode 5 waves. I'm a little out of practice cos I haven't surfed since Christmas but I imagine in that time period I would rarely catch more than 10 waves anyway, partly through choice, partly through incompetence.  
+So here is a breakdown of my wave catching 2 weeks ago...
+
+
+```{r,echo=FALSE}
+df <- data.frame(
+  activity = c("waiting/failing", "wave1", "wave2", "wave3", "wave4", "wave5"),
+  time_in_seconds = c(5343, 12, 8, 15, 10, 12)
+)
+# make small data frame
+sdf <- data.frame(
+  having_fun = c("not_fun", "fun"),
+  time_in_seconds = c(5343, 57)
+)
+```
+
+
+```{r,echo=FALSE}
+knitr::kable(df)
+```
+
+
+I'm actually massively exaggerating the time spent standing up - but I'm including a possible sense of anticipation and satisfaction pre and post wave. And then this can become binary - which is how we like it...
+
+
+```{r,echo=FALSE}
+knitr::kable(sdf)
+```
+
+
+So this is relatively informative as it is no? Far more time is spent **not** having fun.  
+But let's represent this graphically, with particular reference to <https://www.r-graph-gallery.com/doughnut-plot.html>
+
+
+```{r}
+library(ggplot2)
+# compute percentages
+sdf$proportion <- sdf$time_in_seconds / sum(sdf$time_in_seconds)
+# compute cummalative percentages (top of each rectangle)
+sdf$ymax <- cumsum(sdf$proportion)
+# compute bottom of each rectangle
+sdf$ymin <- c(0, head(sdf$ymax, n = -1))
+# compute label position
+sdf$label_position <- (sdf$ymax + sdf$ymin) / 2
+# compute sensible label
+sdf$label <- paste0(sdf$having_fun)
+# segment the fun part
+sdf$x1 <- (1:nrow(sdf)) + 1
+sdf$x2 <- (1:nrow(sdf)) + 2
+# plot
+ggplot(sdf, aes(ymax = ymax, ymin = ymin, xmax = x1, xmin = x2, fill = having_fun), colour = "white") +
+  geom_rect() +
+  geom_text(x = 4.5, aes(y = label_position, label = label, colour = having_fun), size = 6) +
+  coord_polar(theta = "y", start = 345) +
+  ylim(0, 1) +
+  xlim(c(-1, 4)) +
+  theme_void() +
+  theme(legend.position = "none") +
+  annotate("text", x = -0.8, y = 0.9, label = "How Much \n Fun \n is Surfing?", size = 8)
+```
+
+
+So how **much** fun is surfing? Turns out, not many!
