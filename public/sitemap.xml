@@ -13,7 +13,7 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
+    <loc>/post/</loc>
     <lastmod>2020-03-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>/posts/the-art-of-small-data-01/</loc>
+    <loc>/post/the-art-of-small-data-01/</loc>
     <lastmod>2020-03-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -74,6 +74,11 @@
   
   <url>
     <loc>/tags/git/</loc>
+    <lastmod>2020-02-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
     <lastmod>2020-02-23T00:00:00+00:00</lastmod>
   </url>
   

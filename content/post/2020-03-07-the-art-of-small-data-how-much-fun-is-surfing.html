@@ -1,0 +1,62 @@
+---
+title: 'The Art of Small Data: How Much Fun is Surfing?'
+author: Ben Collier
+date: '2020-03-07'
+slug: the-art-of-small-data-01
+categories:
+  - Small Data
+tags:
+  - small data
+  - surfing
+summary: ''
+---
+
+
+
+<p>It is a peculiarity, perhaps, of the English language - certainly in its modern guise - that quite often the native speakers of ‘it’ are actually worse at ‘it’ than their second language counterparts. I can’t recall being taught any grammar in school - much of what I know about the rules of the language come from my father being such a pedant and from my brief time teaching English in Spain. One rule in English refers to countability or, to put it in data parlance, quantifiability.</p>
+<p>There is a difference, then, in how much and how many. The way I learnt to think about it was in reference to rice and grains of rice. You can count grains of rice (1 grain, 2 grains) but you can’t count rice (we can’t say 1 rice, 2 rice). This then simply equates to how much rice and how many grains of rice. Few people get this wrong (you rarely here ‘how many rice is there’) but the same simple rules apply to less and fewer, and in my experience, there are very few native speakers who consistently get this right.</p>
+<p>The basic trick then, for anyone that gives a shit, is can you count it. So can you count fun? Well no, and you probably shouldn’t even try. Anyone that has ever committed to learning to surf will have reached a stage where they simply can’t get enough of it. But, really, are they having fun?</p>
+<p>Let’s leave aside the possibility that a human can derive pleasure from putting on a suit of rubber, immersing themselves in cold water and bobbing around watching the horizon trying not to talk to anyone, and focus on the moment that they are doing this for in the first place - namely catching a wave and standing up.</p>
+<p>My last surf was 2 weeks ago. I was in the water for an hour and a half. I rode 5 waves. I’m a little out of practice cos I haven’t surfed since Christmas but I imagine in that time period I would rarely catch more than 10 waves anyway, partly through choice, partly through incompetence.<br />
+So here is a breakdown of my wave catching 2 weeks ago…</p>
+<ul>
+<li>waiting = 5343 seconds</li>
+<li>wave1 = 12 seconds</li>
+<li>wave2 = 8 seconds</li>
+<li>wave3 = 15 seconds</li>
+<li>wave4 = 10 seconds</li>
+<li>wave5 = 12 seconds</li>
+</ul>
+<p>I’m actually massively exaggerating the time spent standing up - but I’m including a possible sense of anticipation and satisfaction pre and post wave. And then this can become binary - which is how we like it…</p>
+<ul>
+<li>not fun = 5343 seconds</li>
+<li>fun = 57 seconds</li>
+</ul>
+<p>So this is relatively informative as it is no? Far more time is spent <strong>not</strong> having fun.<br />
+But let’s represent this graphically, with particular reference to <a href="https://www.r-graph-gallery.com/doughnut-plot.html" class="uri">https://www.r-graph-gallery.com/doughnut-plot.html</a></p>
+<pre class="r"><code>library(ggplot2)
+# compute percentages
+sdf$proportion &lt;- sdf$time_in_seconds / sum(sdf$time_in_seconds)
+# compute cummalative percentages (top of each rectangle)
+sdf$ymax &lt;- cumsum(sdf$proportion)
+# compute bottom of each rectangle
+sdf$ymin &lt;- c(0, head(sdf$ymax, n = -1))
+# compute label position
+sdf$label_position &lt;- (sdf$ymax + sdf$ymin) / 2
+# compute sensible label
+sdf$label &lt;- paste0(sdf$having_fun)
+# segment the fun part
+sdf$x1 &lt;- (1:nrow(sdf)) + 1
+sdf$x2 &lt;- (1:nrow(sdf)) + 2
+# plot
+ggplot(sdf, aes(ymax = ymax, ymin = ymin, xmax = x1, xmin = x2, fill = having_fun), colour = &quot;white&quot;) +
+  geom_rect() +
+  geom_text(x = 4.5, aes(y = label_position, label = label, colour = having_fun), size = 6) +
+  coord_polar(theta = &quot;y&quot;, start = 345) +
+  ylim(0, 1) +
+  xlim(c(-1, 4)) +
+  theme_void() +
+  theme(legend.position = &quot;none&quot;) +
+  annotate(&quot;text&quot;, x = -0.8, y = 0.9, label = &quot;How Much \n Fun \n is Surfing?&quot;, size = 8)</code></pre>
+<p><img src="/post/2020-03-07-the-art-of-small-data-how-much-fun-is-surfing_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>So how <strong>much</strong> fun is surfing? Turns out, not many!</p>
