@@ -11,6 +11,11 @@ tags:
 summary: ''
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
 It is a peculiarity, perhaps, of the English language - certainly in its modern guise - that quite often the native speakers of 'it' are actually worse at 'it' than their second language counterparts. I can't recall being taught any grammar in school - much of what I know about the rules of the language come from my father being such a pedant and from my brief time teaching English in Spain. One rule in English refers to countability or, to put it in data parlance, quantifiability.
 
 There is a difference, then, in how much and how many. The way I learnt to think about it was in reference to rice and grains of rice. You can count grains of rice (1 grain, 2 grains) but you can't count rice (we can't say 1 rice, 2 rice). This then simply equates to how much rice and how many grains of rice. Few people get this wrong (you rarely here 'how many rice is there') but the same simple rules apply to less and fewer, and in my experience, there are very few native speakers who consistently get this right.
